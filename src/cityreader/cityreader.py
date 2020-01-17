@@ -1,7 +1,7 @@
 # Create a class to hold a city location. Call the class "City". It should have
 # fields for name, lat and lon (representing latitude and longitude).
 
-import csv 
+import csv #import built-it
 
 # class constructor here
 
@@ -86,9 +86,41 @@ for c in cities:
 def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
   # within will hold the cities that fall within the specified region
   within = []
+  # Data normalization (reorganizing the coordinates) with diag_left/diag_right coordinates
+  diag_left = []
+  diag_right = []
+
+  if lat1 < lat2:
+      diag_left.append(lat1)
+      diag_right.append(lat2)
+  else:
+      diag_left.append(lat2)
+      diag_right.append(lat1)
+
+  if lon1 < lon2:
+      diag_left.append(lon1)
+      diag_right.append(lon2)
+  else:
+      diag_left.append(lon2)
+      diag_right.append(lon1)
 
   # TODO Ensure that the lat and lon valuse are all floats
+  
+  # use 'type' method to verify values are floats!
+
+  if (type(lat1) == float and type(lon1) == float and type(lat2) == float and type(lon2) == float):
+        print('Checking floats data.')
+
   # Go through each city and check to see if it falls within 
   # the specified coordinates.
-
+  
+  for city in cities:
+    # returns(city)
+    # will return city.name, city.lat, city.lon
+    if (city.lat > diag_left[0] and city.lat < diag_right[0]):
+      # will return lat param
+      if (city.lon > diag_left[1] and city.lon < diag_right[1]):
+        # will return lon param
+        within.append(city)
+        
   return within
