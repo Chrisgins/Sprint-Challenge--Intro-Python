@@ -1,7 +1,7 @@
 # Create a class to hold a city location. Call the class "City". It should have
 # fields for name, lat and lon (representing latitude and longitude).
 
-import csv #import built-it
+import csv 
 
 # class constructor here
 
@@ -32,21 +32,13 @@ class City:
 cities = []
 
 def cityreader(cities=[]):
-      with open('src/cityreader/cities.csv', 'r') as csv_file:
-          csv_reader = csv.reader(csv_file, delimiter=",")
-          row_count = 0  
-          for row in csv_reader:
-              if row_count == 0:
-                  print(f'Column names are: {row}')
-                  row_count += 1
-              else:
-                  cities.append(City(row[0], float(row[3]), float(row[4])))    
+  # TODO Implement the functionality to read from the 'cities.csv' file
+  # For each city record, create a new City instance and add it to the 
+  # `cities` list
     
-      return cities
+    return cities
 
 cityreader(cities)
-
-
 
 # Print the list of cities (name, lat, lon), 1 record per line.
 for c in cities:
@@ -86,41 +78,9 @@ for c in cities:
 def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
   # within will hold the cities that fall within the specified region
   within = []
-  # Data normalization (reorganizing the coordinates) with diag_left/diag_right coordinates
-  diag_left = []
-  diag_right = []
-
-  if lat1 < lat2:
-      diag_left.append(lat1)
-      diag_right.append(lat2)
-  else:
-      diag_left.append(lat2)
-      diag_right.append(lat1)
-
-  if lon1 < lon2:
-      diag_left.append(lon1)
-      diag_right.append(lon2)
-  else:
-      diag_left.append(lon2)
-      diag_right.append(lon1)
 
   # TODO Ensure that the lat and lon valuse are all floats
-  
-  # use 'type' method to verify values are floats!
-
-  if (type(lat1) == float and type(lon1) == float and type(lat2) == float and type(lon2) == float):
-        print('Checking floats data.')
-
   # Go through each city and check to see if it falls within 
   # the specified coordinates.
-  
-  for city in cities:
-    # returns(city)
-    # will return city.name, city.lat, city.lon
-    if (city.lat > diag_left[0] and city.lat < diag_right[0]):
-      # will return lat param
-      if (city.lon > diag_left[1] and city.lon < diag_right[1]):
-        # will return lon param
-        within.append(city)
-        
+
   return within
